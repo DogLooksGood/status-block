@@ -28,7 +28,8 @@ if [[ "${PREV_TOTAL}" != "" ]] && [[ "${PREV_IDLE}" != "" ]]; then
   let "DIFF_IDLE=$IDLE-$PREV_IDLE"
   let "DIFF_TOTAL=$TOTAL-$PREV_TOTAL"
   let "DIFF_USAGE=(1000*($DIFF_TOTAL-$DIFF_IDLE)/$DIFF_TOTAL+5)/10"
-  echo " ${DIFF_USAGE}% "
+  printf "% 3d%% \n" $DIFF_USAGE
+  # echo " ${DIFF_USAGE}% "
 else
   echo " ? "
 fi
