@@ -2,7 +2,7 @@
 # shows traffic on the specified device
 # Execute every second.
 
-INF="wlp2s0"
+INF=$1
 
 netFile="/tmp/.net-measure"
 
@@ -14,12 +14,8 @@ function human_readable {
                 VALUE=$(($VALUE/1000))
                 CURRENT_BIGGIFIER=$((CURRENT_BIGGIFIER+1))
         done
-        #echo "value: $VALUE"
-        #echo "biggifier: ${BIGGIFIERS[$CURRENT_BIGGIFIER]}"
         echo "$VALUE${BIGGIFIERS[$CURRENT_BIGGIFIER]}"
 }
-
-###REAL STUFF
 
 PREV_RX=0
 PREV_TX=0
