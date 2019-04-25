@@ -9,4 +9,4 @@ else
     ICON=""
 fi
 
-printf "%s%2d°C \n" "${ICON}" "${TEMP}"
+printf "%s　%2d°C　\n" "${ICON}" "${TEMP}"

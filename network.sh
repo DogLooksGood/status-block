@@ -14,7 +14,7 @@ function human_readable {
                 VALUE=$(($VALUE/1000))
                 CURRENT_BIGGIFIER=$((CURRENT_BIGGIFIER+1))
         done
-        echo "$VALUE${BIGGIFIERS[$CURRENT_BIGGIFIER]}"
+	printf "% 4d%s\n" "$VALUE" "${BIGGIFIERS[$CURRENT_BIGGIFIER]}"
 }
 
 PREV_RX=0
@@ -33,6 +33,12 @@ TX=`echo $LINE | awk '{print $9}'`
 RX_SPEED=$(($RX-$PREV_RX))
 TX_SPEED=$(($TX-$PREV_TX))
 
-echo "  `human_readable $TX_SPEED`/s  `human_readable $RX_SPEED`/s "
+#echo "　`human_readable $TX_SPEED`/s"
+#echo "　`human_readable $RX_SPEED`/s　"
+
+echo "　`human_readable $TX_SPEED`/s"
+echo "　`human_readable $RX_SPEED`/s　"
+
+
 echo "${RX}" > "${netFile}"
 echo "${TX}" >> "${netFile}"

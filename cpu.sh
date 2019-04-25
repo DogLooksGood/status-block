@@ -28,10 +28,9 @@ if [[ "${PREV_TOTAL}" != "" ]] && [[ "${PREV_IDLE}" != "" ]]; then
   let "DIFF_IDLE=$IDLE-$PREV_IDLE"
   let "DIFF_TOTAL=$TOTAL-$PREV_TOTAL"
   let "DIFF_USAGE=(1000*($DIFF_TOTAL-$DIFF_IDLE)/$DIFF_TOTAL+5)/10"
-  printf "% 3d%% \n" $DIFF_USAGE
-  # echo " ${DIFF_USAGE}% "
+  printf "　%2d%%　" $DIFF_USAGE
 else
-  echo " ? "
+  echo "?"
 fi
 
 # Remember the total and idle CPU times for the next check.
