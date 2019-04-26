@@ -14,7 +14,7 @@ function human_readable {
                 VALUE=$(($VALUE/1000))
                 CURRENT_BIGGIFIER=$((CURRENT_BIGGIFIER+1))
         done
-	printf "% 4d%s\n" "$VALUE" "${BIGGIFIERS[$CURRENT_BIGGIFIER]}"
+	printf "% 5d%s\n" "$VALUE" "${BIGGIFIERS[$CURRENT_BIGGIFIER]}"
 }
 
 PREV_RX=0
@@ -30,15 +30,25 @@ LINE=`grep ${INF} /proc/net/dev | sed s/.*://`;
 RX=`echo $LINE | awk '{print $1}'`
 TX=`echo $LINE | awk '{print $9}'`
 
-RX_SPEED=$(($RX-$PREV_RX))
-TX_SPEED=$(($TX-$PREV_TX))
+RX_SPD_RAW=$(($RX-$PREV_RX))
+TX_SPD_RAW=$(($TX-$PREV_TX))
 
-#echo "　`human_readable $TX_SPEED`/s"
-#echo "　`human_readable $RX_SPEED`/s　"
+RX_SPD=$(human_readable $RX_SPD_RAW)
+TX_SPD=$(human_readable $TX_SPD_RAW)
 
-echo "　`human_readable $TX_SPEED`/s"
-echo "　`human_readable $RX_SPEED`/s　"
+if [ $TX_SPD_RAW -eq 0 ]; then
+    echo "<txt>　${TX_SPD}"
+else
+    echo "<txt><span fgcolor='yellow'></span>　${TX_SPD}"
+fi
+if [ $RX_SPD_RAW -eq 0 ]; then
+    echo "　${RX_SPD}　</txt>"
+else
+    echo "<span fgcolor='#22FF33'></span>　${RX_SPD}　</txt>"
+fi
 
+
+#echo "${TX_SPD}"
 
 echo "${RX}" > "${netFile}"
 echo "${TX}" >> "${netFile}"
