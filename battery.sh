@@ -23,7 +23,7 @@ elif [ $PERCENT -gt 0]; then
     ICON=""
     ICON_COLOR="red"
 else
-    ICON="???"
+    ICON="battery"
 fi
 
 if [ -n "${CHARGING}" ]; then

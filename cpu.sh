@@ -29,11 +29,11 @@ if [[ "${PREV_TOTAL}" != "" ]] && [[ "${PREV_IDLE}" != "" ]]; then
   let "DIFF_TOTAL=$TOTAL-$PREV_TOTAL"
   let "DIFF_USAGE=(1000*($DIFF_TOTAL-$DIFF_IDLE)/$DIFF_TOTAL+5)/10"
   if [[ $DIFF_USAGE -gt 75 ]]; then
-      printf "<txt>　<span fgcolor='red'>%2d%%</span>　</txt>" $DIFF_USAGE
+      printf "<txt>　<span fgcolor='#FF7777'>%-2d%%</span>　</txt>" $DIFF_USAGE
   elif [[ $DIFF_USAGE -gt 35 ]]; then
-      printf "<txt>　<span fgcolor='yellow'>%2d%%</span>　</txt>" $DIFF_USAGE
+      printf "<txt>　<span fgcolor='#999933'>%-2d%%</span>　</txt>" $DIFF_USAGE
   else
-      printf "<txt>　<span fgcolor='white'>%2d%%</span>　</txt>" $DIFF_USAGE
+      printf "<txt>　%-2d%%　</txt>" $DIFF_USAGE
   fi
 else
   echo "?"

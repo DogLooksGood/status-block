@@ -14,7 +14,7 @@ function human_readable {
                 VALUE=$(($VALUE/1000))
                 CURRENT_BIGGIFIER=$((CURRENT_BIGGIFIER+1))
         done
-	printf "% 5d%s\n" "$VALUE" "${BIGGIFIERS[$CURRENT_BIGGIFIER]}"
+	printf "%-6s\n" "$VALUE${BIGGIFIERS[$CURRENT_BIGGIFIER]}"
 }
 
 PREV_RX=0
@@ -36,15 +36,15 @@ TX_SPD_RAW=$(($TX-$PREV_TX))
 RX_SPD=$(human_readable $RX_SPD_RAW)
 TX_SPD=$(human_readable $TX_SPD_RAW)
 
-if [ $TX_SPD_RAW -eq 0 ]; then
-    echo "<txt>　${TX_SPD}"
+if [ $TX_SPD_RAW -lt 5000 ]; then
+    echo "<txt>　${TX_SPD}"
 else
-    echo "<txt><span fgcolor='yellow'></span>　${TX_SPD}"
+    echo "<txt><span fgcolor='#8844FF'></span>　${TX_SPD}"
 fi
-if [ $RX_SPD_RAW -eq 0 ]; then
-    echo "　${RX_SPD}　</txt>"
+if [ $RX_SPD_RAW -lt 5000 ]; then
+    echo "　${RX_SPD}　</txt>"
 else
-    echo "<span fgcolor='#22FF33'></span>　${RX_SPD}　</txt>"
+    echo "<span fgcolor='#22AA77'></span>　${RX_SPD}　</txt>"
 fi
 
 
